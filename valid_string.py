@@ -20,6 +20,7 @@ def isValid(s):
         return "NO"
     # Case where there are two elements
     first, second = list(valueCount.items())
+    # Candidate for removal
     if first[1] == 1:
         # The difference between letter counts should be 1 or the letter count should be 1, so when we remove it, there are no letters of count 1 anymore.
         # Not absolute value since the order matters.
