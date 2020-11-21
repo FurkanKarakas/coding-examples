@@ -10,6 +10,7 @@ def quick_sort(arr: List[int], start: int, end: int) -> None:
         end (int): end index of the array
     """
 
+    # Criterion for the recursive calls. If start >= end, then there is nothing to sort and simply finish the current call in the stack.
     if start < end:
         # q returns the index of the element which partitions the array.
         q = partition(arr, start, end)
