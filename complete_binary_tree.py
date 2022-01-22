@@ -43,7 +43,9 @@ def is_complete(node: Node, index: int, number_nodes: int) -> bool:
         return True
     if index >= number_nodes:
         return False
-    return (is_complete(node.left, 2*index+1, number_nodes) and is_complete(node.right, 2*index+2, number_nodes))
+    left_child_index = 2*index+1
+    right_child_index = left_child_index+1
+    return (is_complete(node.left, left_child_index, number_nodes) and is_complete(node.right, right_child_index, number_nodes))
 
 
 if __name__ == "__main__":
