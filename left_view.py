@@ -1,14 +1,11 @@
-from typing import Dict
-
-
 class Node:
     def __init__(self, value: int) -> None:
-        self.left = None
-        self.right = None
-        self.value = value
+        self.left: Node | None = None
+        self.right: Node | None = None
+        self.value: int = value
 
 
-def tree_height(root: Node) -> int:
+def tree_height(root: Node | None) -> int:
     """Calculate the height of the tree whose root is `root`
     """
 
@@ -17,7 +14,7 @@ def tree_height(root: Node) -> int:
     return 1 + max(tree_height(root.left), tree_height(root.right))
 
 
-def left_view(root: Node, current_height: int, height_dict: Dict[str, int]) -> None:
+def left_view(root: Node | None, current_height: int, height_dict: dict[str, int]) -> None:
     """Print the left view of a binary tree
 
     Args:
