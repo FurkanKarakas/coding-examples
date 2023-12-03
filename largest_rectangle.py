@@ -26,7 +26,7 @@ class Solution:
                 last_index, last_height = stack[-1]
                 if item > last_height:
                     break
-                # If the last_height is ltoeq item, pop it and compute the area
+                # If the last_height is gtoeq item, pop it and compute the area
                 stack.pop()
                 area = (i-last_index)*last_height
                 max_area = max(max_area, area)
