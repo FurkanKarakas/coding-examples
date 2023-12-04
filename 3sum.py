@@ -13,7 +13,8 @@ class Solution:
      (b, c) and encounter the same b, shift the index for b (which is j) 1 unit to right.
     """
 
-    def threeSum(self, nums: list[int]) -> list[list[int]]:
+    @staticmethod
+    def threeSum(nums: list[int]) -> list[list[int]]:
         nums.sort()
         # Stores integers in sorted order [a, b, c]
         result = list()
@@ -26,8 +27,8 @@ class Solution:
             # For each number, do two-pointer technique
             target = -num
             # Start j from i+1
-            j = i+1
-            k = len(nums)-1
+            j = i + 1
+            k = len(nums) - 1
             # If b appears in the result set, move j forward
             b_values = set()
             while j < k:
@@ -35,7 +36,7 @@ class Solution:
                     j += 1
                     continue
 
-                current = nums[j]+nums[k]
+                current = nums[j] + nums[k]
                 if current == target:
                     b_values.add(nums[j])
                     result.append([num, nums[j], nums[k]])
@@ -51,7 +52,7 @@ class Solution:
 
 
 if __name__ == "__main__":
-    nums = [-1, 0, 1, 2, -1, -4, -5, 5, -2, 1]
-    result = Solution().threeSum(nums)
-    for i, item in enumerate(result):
-        print(f"Result {i+1}: {item}")
+    nums_ = [-1, 0, 1, 2, -1, -4, -5, 5, -2, 1]
+    result_ = Solution.threeSum(nums_)
+    for i_, item in enumerate(result_):
+        print(f"Result {i_ + 1}: {item}")
