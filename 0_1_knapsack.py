@@ -20,6 +20,10 @@ I.e., to the optimal result, we can either include the item n or not include it.
 The first argument of max function is the scenario where we don't include it. 
 The second argument of max function is the scenario where we include it. 
 Simply take the maximum of these two to find the result.
+
+Note that knapsack is of dimensions (n+1)-by-(capacity+1) where n is the number 
+of items. First row means not including any items, and first column means having 
+capacity zero. These are used for initializations.
 """
 
 
