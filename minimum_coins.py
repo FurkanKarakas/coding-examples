@@ -42,9 +42,6 @@ def minCoin(coins: list[int], target: int) -> tuple[int, dict[int, int]]:
         result_dict[coin_value] = result_dict.get(coin_value, 0)+1
         current -= coin_value
 
-    print(dp)
-    print(result_coins)
-
     return dp[target], result_dict
 
 
