@@ -5,7 +5,15 @@ For a binary search to be applicable, there are some conditions:
 1. The array must be sorted.
 2. The elements of the array must have an ordering relation (< > ==).
 
+Take the mid as the mid point between start and end (start+end)//2.
+
+If start+end is odd, then mid will be closer to start.
+
 By assigning start and end to mid+1 and mid-1 respectively, we will eventually get out of the while loop.
+
+Note that mid will never be equal to end, but it might be equal to start if end == start+1.
+
+If you need to compare mid with the end points, do the comparison with end instead of start because of this reason.
 """
 
 
@@ -21,10 +29,6 @@ def binary_search(arr: list[int], target: int) -> int:
     # In a Pythonic way, it would have been arr[start:end+1]
 
     while start <= end:
-        # Take the mid as the mid point between start and end
-        # If start+end is odd, then mid will be closer to start
-        # Note that mid will never be equal to end, but it might be equal to start if end == start+1
-        # If you need to compare mid with the end points, do the comparison with end instead of start because of this reason
         mid = (start+end)//2
 
         # In this case, we have found our item
