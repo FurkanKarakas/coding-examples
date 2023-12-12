@@ -17,8 +17,8 @@ class Solution:
     def threeSum(nums: list[int]) -> list[list[int]]:
         nums.sort()
         # Stores integers in sorted order [a, b, c]
-        result = list()
-        prev_a = None
+        result: list[list[int]] = list()
+        prev_a: int | None = None
         for i, num in enumerate(nums[:-2]):
             # If num is already present in the result list, skip
             if num == prev_a:
@@ -52,7 +52,7 @@ class Solution:
 
 
 if __name__ == "__main__":
-    nums_ = [-1, 0, 1, 2, -1, -4, -5, 5, -2, 1]
-    result_ = Solution.threeSum(nums_)
-    for i_, item in enumerate(result_):
-        print(f"Result {i_ + 1}: {item}")
+    nums = [-1, 0, 1, 2, -1, -4, -5, 5, -2, 1]
+    result = Solution.threeSum(nums)
+    for i, item in enumerate(result):
+        print(f"Result {i + 1}: {item}")
