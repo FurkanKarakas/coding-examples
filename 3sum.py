@@ -18,27 +18,27 @@ class Solution:
         nums.sort()
         # Stores integers in sorted order [a, b, c]
         result = list()
-        a_values = set()
+        prev_a = None
         for i, num in enumerate(nums[:-2]):
             # If num is already present in the result list, skip
-            if num in a_values:
+            if num == prev_a:
                 continue
-            a_values.add(num)
+            prev_a = num
             # For each number, do two-pointer technique
             target = -num
             # Start j from i+1
             j = i + 1
             k = len(nums) - 1
             # If b appears in the result set, move j forward
-            b_values = set()
+            prev_b = None
             while j < k:
-                if nums[j] in b_values:
+                if nums[j] == prev_b:
                     j += 1
                     continue
 
                 current = nums[j] + nums[k]
                 if current == target:
-                    b_values.add(nums[j])
+                    prev_b = nums[j]
                     result.append([num, nums[j], nums[k]])
                     # Continue with the search by moving j and k
                     j += 1
