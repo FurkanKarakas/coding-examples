@@ -8,10 +8,14 @@ Let lis(i) be the longest increasing subsequence including the element nums[:i+1
 lis(i) = max(1, lis(j)+1) for all 0 <= j < i such that nums[i] > nums[j]
 
 Then, the result is max(lis(k)) for k <= 0 <= len(nums)-1
+
+Time complexity: O(n^2)
+Worst case space complexity: O(n^2) ?
 """
 
 
 def longest_increasing_subsequence(nums: list[int]) -> tuple[list[int], int]:
+    # This list keeps track of the maximum elements coming before the current item at index i
     result_indices = [[] for _ in range(len(nums))]
 
     lis = [1]*len(nums)
@@ -38,22 +42,25 @@ def longest_increasing_subsequence(nums: list[int]) -> tuple[list[int], int]:
         if item == result:
             result_indexes.append(i)
 
-    # Keep all the solutions in this variable
-    result_set = list()
+    # Keep a stack for the depth-first search of the longest subsequences
+    stack = list()
 
-    def generate_all_results(result_indexes: list[int], result_list: list[int]):
+    # Keep all the solutions in this variable
+    all_results = list()
+
+    def generate_all_results(result_indexes: list[int]):
         if len(result_indexes) == 0:
-            result_set.append(result_list[::-1])
+            all_results.append(stack[::-1])
             return
 
         for index in result_indexes:
-            generate_all_results(
-                result_indices[index], result_list + [nums[index]]
-            )
+            stack.append(nums[index])
+            generate_all_results(result_indices[index])
+            stack.pop()
 
-    generate_all_results(result_indexes, [])
+    generate_all_results(result_indexes)
 
-    return result_set, result
+    return all_results, result
 
 
 if __name__ == "__main__":
