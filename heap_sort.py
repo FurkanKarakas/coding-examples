@@ -20,11 +20,11 @@ Then we will heapify the array to construct the heap again.
 """
 
 
-def heap_sort(arr: list[int]) -> list[int]:
+def heap_sort(arr: list[int]) -> None:
     def heapify(i: int, n: int) -> None:
         """Heapify method adjusts the element at index i in the heap of size n 
         so that the element goes to the correct location in the heap by sifting 
-        the element downwards in the heap. This methpd will change the input array
+        the element downwards in the heap. This methpd will change the input array.
 
         Args:
             i (int): index of the element which we want to put to the correct place
@@ -66,10 +66,8 @@ def heap_sort(arr: list[int]) -> list[int]:
         # Do the heapify to the root element with the reduced heap size
         heapify(0, i)
 
-    return arr
-
 
 if __name__ == "__main__":
     arr = [5, 8, 1, 10, 20, 30, 22, 7, 0, -1, -4, 18]
-    arr_sorted = heap_sort(arr)
+    heap_sort(arr)
     print(arr)
