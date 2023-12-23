@@ -24,7 +24,7 @@ def heap_sort(arr: list[int]) -> None:
     def heapify(i: int, n: int) -> None:
         """Heapify method adjusts the element at index i in the heap of size n 
         so that the element goes to the correct location in the heap by sifting 
-        the element downwards in the heap. This methpd will change the input array.
+        the element downwards in the heap. This method will change the input array.
 
         Args:
             i (int): index of the element which we want to put to the correct place
