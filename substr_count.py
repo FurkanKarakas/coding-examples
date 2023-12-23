@@ -28,11 +28,12 @@ def substrCount(s):
         result += count*(count+1)//2
     # Consider the middle elements
     for i, (char, count) in enumerate(charTuples):
-        # A candidate for middle element and the index must be in the list's reach
-        if count == 1 and i-1 >= 0 and i+1 < nCharTuples:
+        # A candidate for middle element (size: 1)
+        # and the index must be in the list's reach (left tuple and right tuple)
+        if count == 1 and i-1 >= 0 and i+1 <= nCharTuples-1:
             # Characters must match
             if charTuples[i-1][0] == charTuples[i+1][0]:
-                # Get the minimum between two
+                # Get the minimum between two: e.g. ...aabaaa... -> get min(2,3) = 2
                 result += min(charTuples[i-1][1], charTuples[i+1][1])
     return result
 
