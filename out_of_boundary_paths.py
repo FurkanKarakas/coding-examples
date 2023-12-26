@@ -17,7 +17,7 @@ def findPaths(m: int, n: int, maxMove: int, startRow: int, startColumn: int) -> 
             return False
         return True
 
-    # dp stores the number of possible ways to reach that cell at current move
+    # dp stores the number of possible ways to reach that cell from previous move
     dp = [[0]*n for _ in range(m)]
     # Initialize it with 1 at the start position
     dp[startRow][startColumn] = 1
@@ -40,10 +40,10 @@ def findPaths(m: int, n: int, maxMove: int, startRow: int, startColumn: int) -> 
                     y = j+direction_y
 
                     if is_inbound(x, y):
-                        # Add it to the possible moves from previous position
+                        # Add it to the possible moves from the previous iteration
                         temp[x][y] += dp[i][j]
                     else:
-                        # Add it to result set
+                        # Add it to the result, i.e., all of the possible moves from the previous iteration can go out of bound now.
                         result += dp[i][j]
 
         # Update dp with the current possible moves
