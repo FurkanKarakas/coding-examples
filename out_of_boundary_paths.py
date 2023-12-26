@@ -12,7 +12,7 @@ We will solve it with dynamic programming and storing the positions in the curre
 
 
 def findPaths(m: int, n: int, maxMove: int, startRow: int, startColumn: int) -> int:
-    def is_inbound(x: int, y: int) -> int:
+    def is_inbound(x: int, y: int) -> bool:
         if x in (-1, m) or y in (-1, n):
             return False
         return True
