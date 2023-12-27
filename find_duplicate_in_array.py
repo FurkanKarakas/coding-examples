@@ -14,22 +14,21 @@ Note that integers can't be 0. The first element should "escape" the index:
 
 
 def find_duplicate(nums: list[int]):
-    hase = nums[0]
-    tortoise = nums[hase]
+    tortoise = hase = nums[0]
 
-    while hase != tortoise:
-        hase = nums[hase]
-        tortoise = nums[nums[tortoise]]
-
-    ptr = nums[0]
-    while ptr != hase:
-        ptr = nums[ptr]
-        hase = nums[hase]
-
-    return ptr
+    while True:
+        tortoise = nums[tortoise]
+        hase = nums[nums[hase]]
+        if hase == tortoise:
+            hase = nums[0]
+            while True:
+                if hase == tortoise:
+                    return tortoise
+                tortoise = nums[tortoise]
+                hase = nums[hase]
 
 
 if __name__ == "__main__":
-    nums_ = [1, 5, 2, 3, 4, 5, 6, 7, 5, 5]
+    nums_ = [1, 5, 2, 3, 4, 5, 6, 7, 9, 10]
     duplicate = find_duplicate(nums_)
     print(duplicate)
