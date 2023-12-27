@@ -22,7 +22,9 @@ def find_duplicate(nums: list[int]):
         if hase == tortoise:
             hase = nums[0]
             while True:
-                # If they are equal, this is our duplicate (don't move the pointers first)
+                # If they are equal, this is our duplicate
+                # It doesn't make sense to move pointers first now since they move at the same speed
+                # 😎
                 if hase == tortoise:
                     return tortoise
                 tortoise = nums[tortoise]
