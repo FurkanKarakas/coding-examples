@@ -45,3 +45,14 @@ def diameterOfBinaryTree(root: TreeNode | None) -> int:
     dfs_diam(root)
 
     return max_diam[0]
+
+
+if __name__ == "__main__":
+    # In this example, the diameter doesn't go through the root
+    root = TreeNode()
+    root.left = TreeNode()
+    root.left.left = TreeNode()
+    root.left.left.left = TreeNode()
+    root.left.right = TreeNode()
+    root.left.right.right = TreeNode()
+    print(diameterOfBinaryTree(root))
