@@ -21,7 +21,7 @@ class TreeNode:
 def maxPathSum(root: TreeNode | None) -> int:
     result = [-float("inf")]
 
-    def dfs(node):
+    def dfs(node: TreeNode | None) -> int:
         if not node:
             return 0
         # Calculate left and right subproblems
