@@ -52,6 +52,41 @@ def spiralOrder(matrix: list[list[int]]) -> list[int]:
     return arr
 
 
+def spiralOrderCompact(matrix: list[list[int]]) -> list[int]:
+    """A compact version of the spiral matrix. There is only one loop.
+    """
+
+    m = len(matrix)
+    n = len(matrix[0])
+    indexes = [0, 0]
+    directions = ((0, 1), (1, 0), (0, -1), (-1, 0))
+    direction_index = 0
+    borders = [n-1, m-1, 0, 1]
+    arr = list()
+    count = 0
+
+    while count < m*n:
+        count += 1
+        i, j = indexes
+        arr.append(matrix[i][j])
+        if indexes[(direction_index+1) % 2] == borders[direction_index]:
+            # Change direction
+            if 0 <= direction_index <= 2:
+                direction_index += 1
+            else:
+                # Update the borders
+                direction_index = 0
+                borders[0] -= 1
+                borders[1] -= 1
+                borders[2] += 1
+                borders[3] += 1
+        x, y = directions[direction_index]
+        indexes[0] += x
+        indexes[1] += y
+
+    return arr
+
+
 if __name__ == "__main__":
     matrix = [
         [1, 2,  3,  4],
