@@ -11,6 +11,7 @@ def left_view(root: Node | None, current_height: int, max_height: list[int]) -> 
     Args:
         root (Node): Root node
         current_height (int): Current height in the tree
+        max_height (list[int]): A list of size 1 which stores the max height seen so far
     """
 
     if root is None:
