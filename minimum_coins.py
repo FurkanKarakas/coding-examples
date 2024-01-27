@@ -6,6 +6,9 @@ This problem can be solved using Dynamic Programming by observing the following 
 minCoin(target) = min(minCoin(target - coins[i])) + 1 where 0 <= i <= len(coins)-1
 
 We basically try all the solutions and pick up the one that yields the minimum result.
+
+Time complexity: O(target * len(coins))
+Space complexity: O(target)
 """
 
 import time
