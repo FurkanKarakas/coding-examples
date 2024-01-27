@@ -11,8 +11,6 @@ Time complexity: O(target * len(coins))
 Space complexity: O(target)
 """
 
-import time
-
 
 def minCoinTopDown(coins: list[int], target: int) -> float:
     """Using memoization. Use DP instead"""
