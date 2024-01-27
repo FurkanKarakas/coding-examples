@@ -6,19 +6,37 @@ This problem can be solved using Dynamic Programming by observing the following 
 minCoin(target) = min(minCoin(target - coins[i])) + 1 where 0 <= i <= len(coins)-1
 
 We basically try all the solutions and pick up the one that yields the minimum result.
-
-Important: Assume that a solution exists.
 """
 
+import time
 
-def minCoin(coins: list[int], target: int) -> tuple[int, dict[int, int]]:
+
+def minCoinTopDown(coins: list[int], target: int) -> float:
+    """Using memoization. Use DP instead"""
+    memo = dict()
+
+    def dfs(i):
+        if i < 0:
+            return float("inf")
+        if i == 0:
+            return 0
+        if i in memo:
+            return memo[i]
+        result = min([dfs(i-coin) for coin in coins])+1
+        memo[i] = result
+        return memo[i]
+
+    return dfs(target)
+
+
+def minCoin(coins: list[int], target: int) -> tuple[float, dict[int, int]]:
     result_dict = dict()
 
-    dp = [0]*(target+1)
+    dp = [float("inf")]*(target+1)
+    dp[0] = 0
     result_coins = [0]*(target+1)
 
-    for i in range(1, len(dp)):
-        minItem = float("inf")
+    for i in range(1, target+1):
         for coin in coins:
             j = i-coin
             if j < 0:
@@ -27,14 +45,18 @@ def minCoin(coins: list[int], target: int) -> tuple[int, dict[int, int]]:
 
             result = dp[j]
 
-            if result < minItem:
-                minItem = result
+            if result < dp[i]:
+                dp[i] = result
                 # Store the coin
                 result_coins[i] = coin
 
-        dp[i] = minItem+1  # type: ignore
+        dp[i] += 1
 
     # Construct the result
+    if dp[target] == float("inf"):
+        # Result not found
+        return -1, dict()
+
     current = target
     while current > 0:
         coin_value = result_coins[current]
@@ -46,8 +68,8 @@ def minCoin(coins: list[int], target: int) -> tuple[int, dict[int, int]]:
 
 
 if __name__ == "__main__":
-    coins_ = [10, 5, 4]
-    target_ = 32
+    coins_ = [1, 2, 5, 7, 10, 20, 22, 23, 25, 29, 45]
+    target_ = 1_500
 
     result, result_coins = minCoin(coins_, target_)
 
