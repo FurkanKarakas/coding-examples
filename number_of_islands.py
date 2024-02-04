@@ -6,6 +6,8 @@ An island is surrounded by water and is formed by connecting adjacent lands hori
 We can solve this problem by applying breath-first and setting all 1's to 0's, and incrementing the counter by 1.
 
 We can also solve this problem by using depth-first search as well by using recursion. Maybe the recursive call stacks will be a lot in this case.
+
+This solution can be extended to compute the largest island. Just count the number of 1's in the bfs function below and return the area from the function.
 """
 
 from collections import deque
