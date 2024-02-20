@@ -1,48 +1,43 @@
-class Solution:
-    def largestRectangleArea(self, heights: list[int]) -> int:
-        """This function computes the area of the largest rectangle in the given list.
+"""https://leetcode.com/problems/largest-rectangle-in-histogram/description/
 
-        Algorithm:
+Given an array of integers `heights` representing the histogram's bar height where the width of each bar is 1, return the area of the largest rectangle in the histogram.
 
-        * Keep a stack which stores the tuple `(index,height)` with heights in increasing order
-        * At the current element, pop the elements in the stack until you
-          reach a short height. Update the index with the furthest 
-          possible location that you could reach. 
-          While popping, update the max area that you would have reached using that rectangle.
-        * At the end, pop the remaining elements to calculate the maximum area.
+Observe the following patterns:
 
-        Args:
-            heights (list[int]): Heights of the rectangles with width 1
+* Let's say we have heights 5 and 4. Notice that 5 can't be extended to the right since 4 is blocking it.
+* We will use this principle and remove the items from the stack if the top of the stack contains taller heights than the current one.
+* Once the current item is the tallest one at the top of the stack, we push this height to the stack.
+* As the starting index, we don't give the index of the height in the array, but we give the index until which previous index the current height could be extended.
+* Also, whenever you pop from the stack, make sure to update the maximum area accordingly.
+* If there are no more heights to be processed, we process the remaining heights in the stack.
+"""
 
-        Returns:
-            int: The maximum area of the rectangle in the given list
-        """
 
-        stack: list[tuple[int, int]] = list()
-        max_area: int = -1
-        for i, item in enumerate(heights):
-            item_index = i
-            while len(stack) > 0:
-                last_index, last_height = stack[-1]
-                if item > last_height:
-                    break
-                # If the last_height is gtoeq item, pop it and compute the area
+def largestRectangleArea(heights: list[int]) -> int:
+    stack = list()
+    max_area = 0
+
+    for i, height in enumerate(heights):
+        starting_index = i
+        while stack:
+            last_height, last_index = stack[-1]
+            if last_height > height:
+                starting_index = last_index
                 stack.pop()
-                area = (i-last_index)*last_height
-                max_area = max(max_area, area)
-                # Set the item_index to last_index
-                item_index = last_index
-            stack.append((item_index, item))
+                max_area = max(max_area, (i-last_index)*last_height)
+            else:
+                break
+        stack.append((height, starting_index))
 
-        # At the end of iteration, compute the remaining elements
-        while len(stack) > 0:
-            i, item = stack.pop()
-            max_area = max(max_area, (len(heights)-i)*item)
+    # Process the remaining heights in the stack
+    while stack:
+        height, index = stack.pop()
+        max_area = max(max_area, (len(heights)-index)*last_height)
 
-        return max_area
+    return max_area
 
 
 if __name__ == "__main__":
-    heights = [1, 2, 3, 4, 3, 1]
-    largest_area = Solution().largestRectangleArea(heights)
-    print(f"The largest area of a rectangle in {heights} is: {largest_area}")
+    heights = [2, 1, 5, 6, 2, 3]
+    max_area = largestRectangleArea(heights)
+    print(max_area)
