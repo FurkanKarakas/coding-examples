@@ -13,25 +13,21 @@ Note that integers can't be 0. The first element should "escape" the index:
 """
 
 
-def find_duplicate(nums: list[int]):
-    tortoise = hase = nums[0]
-
+def findDuplicate(nums: list[int]) -> int:
+    slow = fast = nums[0]
     while True:
-        tortoise = nums[tortoise]
-        hase = nums[nums[hase]]
-        if hase == tortoise:
-            hase = nums[0]
-            while True:
-                # If they are equal, this is our duplicate
-                # It doesn't make sense to move pointers first now since they move at the same speed
-                # 😎
-                if hase == tortoise:
-                    return tortoise
-                tortoise = nums[tortoise]
-                hase = nums[hase]
+        slow = nums[slow]
+        fast = nums[nums[fast]]
+        if slow == fast:
+            break
+    fast = nums[0]
+    while fast != slow:
+        fast = nums[fast]
+        slow = nums[slow]
+    return slow
 
 
 if __name__ == "__main__":
     nums_ = [1, 5, 2, 3, 4, 5, 6, 7, 9, 10]
-    duplicate = find_duplicate(nums_)
+    duplicate = findDuplicate(nums_)
     print(duplicate)
