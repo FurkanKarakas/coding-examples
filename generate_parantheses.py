@@ -1,3 +1,15 @@
+"""https://leetcode.com/problems/generate-parentheses/description/
+
+Time complexity: O(N * 2**N) where N = 2*n
+
+We have 2*n = N spots to fill (n opening and n closing parantheses). At each spot, we can make two decisions -> 2**N total cases
+At each base case, we copy N characters to the result set. The cost of each base case is -> N
+In total -> N * 2**N
+
+Space complexity: O(n) for stack and recursive callstack
+"""
+
+
 class Solution:
     def generateParenthesis(self, n: int) -> list[str]:
         """This function generates all valid parantheses of number of pairs n and returns the result.
