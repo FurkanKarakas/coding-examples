@@ -11,7 +11,7 @@ class Node:
         self.next: Node | None = next_
 
 
-class LinkedList:
+class DoublyLinkedList:
     def __init__(self):
         self.head = Node()
         self.tail = Node()
@@ -37,7 +37,7 @@ class LRUCache:
     def __init__(self, capacity: int):
         self.capacity = capacity
         self.dict = dict()
-        self.linkedList = LinkedList()
+        self.linkedList = DoublyLinkedList()
 
     def get(self, key: int) -> int:
         if key in self.dict:
