@@ -14,22 +14,24 @@ A splitting node in a path is a node which goes through the node's left and righ
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val
-        self.left = left
-        self.right = right
+        self.left: TreeNode | None = left
+        self.right: TreeNode | None = right
 
 
-def maxPathSum(root: TreeNode | None) -> int:
-    result = [-float("inf")]
+def maxPathSum(root: TreeNode | None) -> int | float:
+    result = -float("inf")
 
     def dfs(node: TreeNode | None) -> int:
+        nonlocal result
+
         if not node:
             return 0
         # Calculate left and right subproblems
         left = dfs(node.left)
         right = dfs(node.right)
         # Update the result if we split at this node
-        result[0] = max(
-            result[0],
+        result = max(
+            result,
             node.val,
             node.val+left,
             node.val+right,
@@ -43,4 +45,15 @@ def maxPathSum(root: TreeNode | None) -> int:
         )
 
     dfs(root)
-    return int(result[0])
+    return result
+
+
+if __name__ == "__main__":
+    root = TreeNode(-10)
+    root.left = TreeNode(9)
+    root.right = TreeNode(20)
+    root.right.left = TreeNode(15)
+    root.right.right = TreeNode(7)
+
+    result = maxPathSum(root)
+    print(result)
