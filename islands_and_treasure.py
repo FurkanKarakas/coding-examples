@@ -9,6 +9,8 @@ INF - A land cell that can be traversed. We use the integer 2^31 - 1 = 214748364
 Fill each land cell with the distance to its nearest treasure chest. If a land cell cannot reach a treasure chest than the value should remain INF.
 
 Assume the grid can only be traversed up, down, left, or right.
+
+This is a shortest path graph problem: Apply BFS for shortest path problems. ✅
 """
 
 from collections import deque
