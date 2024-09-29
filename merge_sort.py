@@ -1,7 +1,4 @@
-from typing import List
-
-
-def merge_sort(arr: List[int]):
+def merge_sort(arr: list[int]):
     # Stop when the length of the array is 1, i.e., the array contains a single element.
     # This is our terminating criterion!
     if len(arr) > 1:
@@ -13,7 +10,7 @@ def merge_sort(arr: List[int]):
         merge(arr, L, R)
 
 
-def merge(arr: List[int], L: List[int], R: List[int]):
+def merge(arr: list[int], L: list[int], R: list[int]):
     numelem_L = len(L)
     numelem_R = len(R)
     i = j = k = 0

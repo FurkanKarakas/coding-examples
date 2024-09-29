@@ -1,7 +1,4 @@
-from typing import List
-
-
-def quick_sort(arr: List[int], start: int, end: int) -> None:
+def quick_sort(arr: list[int], start: int, end: int) -> None:
     """This function implements quick sort algorithm.
 
     Args:
@@ -18,9 +15,11 @@ def quick_sort(arr: List[int], start: int, end: int) -> None:
         quick_sort(arr, q+1, end)
 
 
-def partition(arr: List[int], start: int, end: int) -> int:
+def partition(arr: list[int], start: int, end: int) -> int:
     # print(arr, start, end)
     partitioning_element = arr[end]
+    # The parameter i keeps track of the index of the large element
+    # The smallest index where a larger element than the pivot element resides
     i = start
 
     # Do not count the last element (pivot) in the loop
