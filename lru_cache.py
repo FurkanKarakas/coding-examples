@@ -19,17 +19,20 @@ class DoublyLinkedList:
         self.tail.prev = self.head
 
     def addNodeToTail(self, node: Node) -> None:
+        assert self.tail.prev is not None
         self.tail.prev.next = node
         node.prev = self.tail.prev
         node.next = self.tail
         self.tail.prev = node
 
     def removeNode(self, node: Node) -> Node:
+        assert node.prev is not None and node.next is not None
         node.prev.next = node.next
         node.next.prev = node.prev
         return node
 
     def evictNode(self) -> Node:
+        assert self.head.next is not None
         return self.removeNode(self.head.next)
 
 
