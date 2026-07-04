@@ -5,25 +5,29 @@ class Node:
         self.value: int = value
 
 
-def left_view(root: Node | None, current_height: int, max_height: list[int]) -> None:
+max_height = 0
+
+
+def left_view(root: Node | None, current_height: int) -> None:
     """Print the left view of a binary tree
 
     Args:
         root (Node): Root node
         current_height (int): Current height in the tree
-        max_height (list[int]): A list of size 1 which stores the max height seen so far
     """
+
+    global max_height
 
     if root is None:
         return
 
-    if current_height == max_height[0]:
-        max_height[0] += 1
+    if current_height == max_height:
+        max_height += 1
         print(root.value)
 
     # Recursively trace the left and right subtrees. Note that left child is called first
-    left_view(root.left, current_height+1, max_height)
-    left_view(root.right, current_height+1, max_height)
+    left_view(root.left, current_height+1)
+    left_view(root.right, current_height+1)
 
 
 if __name__ == "__main__":
@@ -36,4 +40,4 @@ if __name__ == "__main__":
         3), Node(7), Node(8)
 
     print(f"Left view of the tree:")
-    left_view(tree, 0, [0])
+    left_view(tree, 0)

@@ -18,7 +18,7 @@ def permuteUnique(nums: list[int]) -> list[list[int]]:
     nums.sort()
     used = [False] * len(nums)
 
-    def backtrack():
+    def backtrack() -> None:
         if len(stack) == len(nums):
             result.append(stack.copy())
             return

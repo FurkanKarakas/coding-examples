@@ -13,8 +13,8 @@ A valid BST is defined as follows:
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val
-        self.left = left
-        self.right = right
+        self.left: TreeNode | None = left
+        self.right: TreeNode | None = right
 
 
 def isValidBST(root: TreeNode | None) -> bool:
@@ -23,7 +23,7 @@ def isValidBST(root: TreeNode | None) -> bool:
     # If it doesn't satisfy this constraint, it can't be a BST
     # Time: O(n)
     # Space: O(H) where H = height of the tree due to recursive call stack
-    def dfs(node, min_val, max_val):
+    def dfs(node: TreeNode | None, min_val: int | float, max_val: int | float) -> bool:
         if not node:
             return True
         if not min_val <= node.val <= max_val:
