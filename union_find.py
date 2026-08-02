@@ -12,6 +12,7 @@ class UnionFind:
             raise ValueError(
                 f"Element {p} is out of bounds for UnionFind of size {self.size}.")
 
+        # If this node is not the root, recursively find the root and compress the path
         if self.parent[p] != p:
             self.parent[p] = self.find(self.parent[p])  # Path compression
         return self.parent[p]
