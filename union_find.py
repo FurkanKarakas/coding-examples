@@ -42,7 +42,7 @@ class UnionFind:
         """
         Returns the number of connected components in the Union-Find structure.
         """
-        return sum(1 for i in range(self.size) if self.parent[i] == i)
+        return sum(1 for i in range(self.size) if self.find(i) == i)
 
 
 if __name__ == "__main__":
