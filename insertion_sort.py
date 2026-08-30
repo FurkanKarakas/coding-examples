@@ -1,11 +1,17 @@
-from typing import List
+"""
+Insertion sort algorithm implemented in Python. Run time: O(n^2)
+How insertion sort works:
+1. It iterates through the array, starting from the second element (index 1).
+2. For each element, it compares it with the elements before it and shifts those elements to the right until it finds the correct position for the current element.
+3. It then inserts the current element into its correct position.
+"""
 
 
-def insertion_sort(arr: List[int]):
+def insertion_sort(arr: list[int]) -> None:
     """Insertion sort algorithm implemented in Python. Run time: O(n^2)
 
     Args:
-        arr (List[int]): Array to be sorted
+        arr (list[int]): Array to be sorted
     """
     size = len(arr)
     for i in range(1, size):
