@@ -14,6 +14,7 @@ Python examples are grouped by their primary problem-solving approach:
 - `greedy/`: problems solved by making locally optimal choices.
 - `linked_lists/`: linked-list algorithms.
 - `math_and_bit_manipulation/`: numerical and bitwise algorithms.
+- `regex/`: regular-expression parsing and validation examples.
 - `sorting_and_searching/`: sorting and search algorithms.
 - `tree_algorithms/`: binary tree construction, traversal, and properties.
 
