@@ -62,6 +62,28 @@ class Trie:
         nextTrieNode = node.charToTrieNode[currentChar]
         return self.startsWithHelper(nextTrieNode, prefix, index+1)
 
+    def suggest(self, prefix: str, max_suggestions: int) -> list[str]:
+        suggestions: list[str] = []
+        node = self.root
+        for char in prefix:
+            if char not in node.charToTrieNode:
+                return suggestions
+            node = node.charToTrieNode[char]
+        self.collectSuggestions(node, prefix, suggestions, max_suggestions)
+        return suggestions
+
+    def collectSuggestions(self, node: TrieNode, currentPrefix: str, suggestions: list[str], max_suggestions: int) -> None:
+        if len(suggestions) == max_suggestions:
+            return
+        if node.isTerminal:
+            suggestions.append(currentPrefix)
+        currentCharToTrieNode = node.charToTrieNode
+        currentCharsSorted = sorted(currentCharToTrieNode.keys())
+        for char in currentCharsSorted:
+            nextTrieNode = currentCharToTrieNode[char]
+            self.collectSuggestions(
+                nextTrieNode, currentPrefix + char, suggestions, max_suggestions)
+
 
 if __name__ == "__main__":
     trie = Trie()
@@ -71,3 +93,4 @@ if __name__ == "__main__":
     print(trie.startsWith("app"))  # return True
     trie.insert("app")
     print(trie.search("app"))     # return True
+    print(trie.suggest("ap", 3))  # return ['app', 'apple']
